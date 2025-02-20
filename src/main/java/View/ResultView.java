@@ -38,7 +38,7 @@ public class ResultView
     // 전체 사다리 출력처리
     public static void printLadder(Ladder ladder)
     {
-        System.out.println("실행결과");
+        System.out.println("\n실행결과");
         IntStream.range(0, ladder.getHeight())
                 .forEach(y -> printRowLadder(y, ladder));
     }
