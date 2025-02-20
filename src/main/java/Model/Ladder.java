@@ -16,7 +16,7 @@ public class Ladder
 
     private boolean randomBoolean()
     {
-        int randomNumber = (int)(Math.random() + 0.5);
+        int randomNumber = (int)(Math.random() + 0.3);
         if (randomNumber == 1)
             return true;
 
@@ -31,19 +31,48 @@ public class Ladder
     }
 
     public void setAllLadder() {
-        // 첫 번째 라인 생성 및 초기화
+        // 0번 라인 생성
         Line firstLine = new Line(setting);
         lines.add(firstLine);
-        addLines(firstLine, firstLine);  // 필요한 경우; 만약 첫 줄에 대해 다른 처리가 필요하다면 수정하세요.
+        addLines(firstLine, firstLine);
 
         // 이후 라인 생성 및 설정
-        for (int lineNumber = 1; lineNumber < setting.getWidth(); lineNumber++) {
-            Line newLine = new Line(setting);  // 새로운 라인 생성
-            addLines(lines.get(lineNumber - 1), newLine);  // 이전 라인과 새 라인을 대상으로 addLines 호출
-            lines.add(newLine);  // 리스트에 추가
+        for (int lineNumber = 1; lineNumber < setting.getWidth(); lineNumber++)
+        {
+            Line newLine = new Line(setting);
+            addLines(lines.get(lineNumber - 1), newLine);
+            lines.add(newLine);
         }
     }
 
+    // 현재 높이가 curY이고 finalPosition 사다리에 위치할 때, 이동할 수 있는지 여부 체크
+    private int moveLadder(int finalPosition, int curY)
+    {
+        // 왼쪽 체크
+        if (finalPosition > 0 && getData(finalPosition-1, curY))
+        {
+            finalPosition -= 1;
+            return finalPosition;
+        }
+
+        // 오른쪽 체크
+        if (finalPosition < setting.getWidth() && getData(finalPosition, curY))
+        {
+            finalPosition += 1;
+            return finalPosition;
+        }
+
+        return finalPosition;
+    }
+
+    public int getFinalPosition(int startPosition)
+    {
+        int finalPosition = startPosition;
+        for (int curY = 0; curY < setting.getHeight(); curY++)
+            finalPosition = moveLadder(finalPosition, curY);
+
+        return finalPosition;
+    }
 
     public int getWidth()
     {

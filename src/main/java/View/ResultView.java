@@ -42,4 +42,12 @@ public class ResultView
         IntStream.range(0, ladder.getHeight())
                 .forEach(y -> printRowLadder(y, ladder));
     }
+
+    // 시작점, 도착점 출력처리
+    public static void printFinalPosition(Ladder ladder)
+    {
+        System.out.println("\n");
+        for (int i = 0; i < ladder.getWidth()+1; i++)
+            System.out.printf("%d -> %d\n", i, ladder.getFinalPosition(i));
+    }
 }

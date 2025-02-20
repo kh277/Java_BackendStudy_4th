@@ -13,6 +13,10 @@ public class Application
         Ladder ladder = new Ladder(ladderWidth, ladderHeight);
         ladder.setAllLadder();
 
+        // 생성한 사다리 출력
         ResultView.printLadder(ladder);
+
+        // 시작점, 도착점 출력
+        ResultView.printFinalPosition(ladder);
     }
 }
