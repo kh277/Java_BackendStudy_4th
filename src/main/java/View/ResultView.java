@@ -63,6 +63,7 @@ public class ResultView
             System.out.printf("%s : %s\n", participants.get(i), result.get(ladder.getFinalPosition(i)));
     }
 
+    // 특정 사람의 사다리 결과 출력
     public static void printResult(Ladder ladder, String resultName, List<String> participants, List<String> result) {
         System.out.println("\n실행 결과");
         if (!resultName.equals("all"))

@@ -41,23 +41,6 @@ public class Ladder
         }
     }
 
-    // 현재 높이가 curY이고 finalPosition 사다리에 위치할 때, 이동할 수 있는지 여부 체크
-    private int moveLadder(int finalPosition, int curY) {
-        // 왼쪽 체크
-        if (finalPosition > 0 && getData(finalPosition-1, curY)) {
-            finalPosition -= 1;
-            return finalPosition;
-        }
-
-        // 오른쪽 체크
-        if (finalPosition < setting.getWidth() && getData(finalPosition, curY)) {
-            finalPosition += 1;
-            return finalPosition;
-        }
-
-        return finalPosition;
-    }
-
     public int getFinalPosition(int startPosition) {
         int finalPosition = startPosition;
         for (int curY = 0; curY < setting.getHeight(); curY++) {
